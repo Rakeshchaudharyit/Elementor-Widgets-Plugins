@@ -40,7 +40,7 @@ class Post_Slider extends BDevs_El_Widget {
      *
      */
     public function get_title () {
-        return __( 'Post Category Slider', 'bdevselement' );
+        return __( 'Post Slider', 'bdevselement' );
     }
 
     public function get_custom_help_url () {
@@ -210,6 +210,18 @@ class Post_Slider extends BDevs_El_Widget {
             ]
         );
 
+        $this->add_responsive_control(
+            'post_content_margin_btm',
+            [
+                'label' => __( 'Margin', 'bdevselement' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+
+                'selectors' => [
+                    '{{WRAPPER}} .post__content .post__title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_group_control(
             Group_Control_Typography::get_type(),
@@ -235,7 +247,7 @@ class Post_Slider extends BDevs_El_Widget {
                 'label' => __( 'Color', 'bdevselement' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .post__content .post__title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .post__content .post__title a' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -254,7 +266,68 @@ class Post_Slider extends BDevs_El_Widget {
                 'label' => __( 'Color', 'bdevselement' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .post__content .post__title:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .post__content .post__title a:hover' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+
+        $this->add_responsive_control(
+            'post_content_excerpt',
+            [
+                'label' => __( 'Category', 'bdevselement' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'cat_typography',
+                'label' => __( 'Category Typography', 'bdevselement' ),
+                'scheme' => Typography::TYPOGRAPHY_3,
+                'selector' => '{{WRAPPER}} .post__cat .tag-item a',
+            ]
+        );
+
+        $this->start_controls_tabs( 'cat_tabs' );
+        $this->start_controls_tab(
+            'cat_normal_tab',
+            [
+                'label' => __( 'Normal', 'bdevselement' ),
+            ]
+        );
+
+        $this->add_control(
+            'cat_color',
+            [
+                'label' => __( 'Color', 'bdevselement' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .post__cat .tag-item a' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'cat_hover_tab',
+            [
+                'label' => __( 'Hover', 'bdevselement' ),
+            ]
+        );
+
+        $this->add_control(
+            'cat_hvr_color',
+            [
+                'label' => __( 'Color', 'bdevselement' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .post__cat .tag-item a:hover' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -262,264 +335,16 @@ class Post_Slider extends BDevs_El_Widget {
         $this->end_controls_tabs();
 
         $this->add_responsive_control(
-            'post_meta_list',
+            'cat_margin_top',
             [
-                'label' => __( 'Meta', 'bdevselement' ),
-                'type' => Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'post_meta_bg',
-                'label' => esc_html__( 'Background', 'plugin-name' ),
-                'types' => [ 'classic', 'gradient', 'video' ],
-                'selector' => '{{WRAPPER}} .post__content',
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'post_meta_typography',
-                'label' => __( 'Typography', 'bdevselement' ),
-                'scheme' => Typography::TYPOGRAPHY_3,
-                'selector' => '{{WRAPPER}} .post-views, {{WRAPPER}} .post-date',
-            ]
-        );
-        $this->add_control(
-            'post_meta_color',
-            [
-                'label' => __( 'Color', 'bdevselement' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .post-views, {{WRAPPER}} .post-date' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-        $this->add_responsive_control(
-            'post_content_radius',
-            [
-                'label' => __( 'Radius', 'bdevselement' ),
+                'label' => __( 'Margin', 'bdevselement' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .item_wrap' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .post__cat' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
-        $this->add_control(
-            'meta_icon_options',
-            [
-                'label' => esc_html__( 'Icon Options', 'plugin-name' ),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-        $this->add_control(
-            'post_meta_icon_view',
-            [
-                'label' => __( 'View Icon', 'bdevselement' ),
-                'type' => Controls_Manager::ICONS,
-                'default' => [
-                    'value' => 'fas fa-star',
-                    'library' => 'solid',
-                ],
-            ]
-        );
-        $this->add_control(
-            'post_meta_icon_time',
-            [
-                'label' => __( 'Time Icon', 'bdevselement' ),
-                'type' => Controls_Manager::ICONS,
-                'default' => [
-                    'value' => 'fa-thin fa-clock',
-                    'library' => 'solid',
-                ],
-            ]
-        );
-        $this->add_control(
-            'post_meta_space',
-            [
-                'label' => esc_html__( 'Space Between', 'plugin-name' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 10,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .post-views' => 'margin-left: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-        $this->add_control(
-            'post_meta_icon_color',
-            [
-                'label' => __( 'Icon Color', 'bdevselement' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .post-meta i, {{WRAPPER}} .post-meta i:before' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-        $this->add_control(
-            'post_meta_icon_margin',
-            [
-                'label' => esc_html__( 'Text Indent', 'plugin-name' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 10,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .post-views i, {{WRAPPER}} .post-date i' => 'margin-right: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            '_section_post_tab_navigations',
-            [
-                'label' => __( 'Navigation', 'bdevselement' ),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-        $this->add_responsive_control(
-            'post_navigation_size',
-            [
-                'label' => esc_html__( 'Navigation Size', 'plugin-name' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 45,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .flickfeed .slick-arrow svg' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-        $this->add_responsive_control(
-            'post_navigation_space',
-            [
-                'label' => esc_html__( 'Space Between', 'plugin-name' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 100,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .flickfeed .slick-arrow.slick-prev' => 'right: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-        $this->add_responsive_control(
-            'post_navigation_margin',
-            [
-                'label' => esc_html__( 'Margin', 'plugin-name' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => -65,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .flickfeed .slick-arrow' => 'top: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'post_navigation_color',
-            [
-                'label' => __( 'Color', 'bdevselement' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} button.slick-arrow svg path' => 'stroke: {{VALUE}}',
-                ],
-            ]
-        );
-        $this->add_control(
-            'post_navigation_hover_color',
-            [
-                'label' => __( 'Hover Color', 'bdevselement' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .flickfeed .slick-arrow:hover svg' => 'fill: {{VALUE}}',
-                ],
-            ]
-        );
-        $this->add_control(
-            'post_navigation_hover_stroke_color',
-            [
-                'label' => __( 'Hover Stroke Color', 'bdevselement' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .flickfeed .slick-arrow:hover svg path' => 'stroke: {{VALUE}}',
-                ],
-            ]
-        );
-
 
         $this->end_controls_section();
 
@@ -592,31 +417,41 @@ class Post_Slider extends BDevs_El_Widget {
             <div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
                 <div class="flickfeed video-list-slider">
                     <?php
-                    if ( have_posts() ) : 
-                        
-                        foreach($posts as $ixd=>$post) :
-                        $video_thumb = get_the_post_thumbnail_url($post->ID, 'video_thumb');
-                        $categories = get_the_terms( $post->ID, $taxonomy );
-                        $video_views = get_post_meta( $post->ID, 'popular_videos', true );
+                    if ( have_posts() ) : while ( have_posts() ) : the_post();
+
+
+
+                        $video_thumb = get_the_post_thumbnail_url(get_the_ID(), 'video_thumb');
+
+
+                        $categories = get_the_terms( get_the_ID(), $taxonomy );
                         ?>
-                        <a href="<?php echo esc_url(get_the_permalink($post->ID)); ?>" class="item_wrap">
+                        <div class="item_wrap">
                             <div class="post_item">
                                 <div class="item-img">
-                                        <img src="<?php print get_the_post_thumbnail_url($post->ID, 'full'); ?>" alt="<?php echo get_the_title(); ?>">
+                                    <a href="<?php echo esc_url(get_the_permalink(get_the_ID())); ?>">
+                                        <img src="<?php print get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" alt="<?php echo get_the_title(); ?>">
+                                    </a>
+
                                 </div>
                                 <div class="post__content">
-                                    <h3 class="post__title"><?php echo get_the_title($post->ID); ?></h3>
-                                    <div class="post-meta">
-                                        <div class="post-date"><i class="<?php echo esc_html($settings['post_meta_icon_time']['value']);?>"></i> Added <?php echo human_time_diff( strtotime( $post->post_date ), current_time( 'timestamp' ) ).' '.__( 'ago' );?></div>
-                                        <div class="post-views"><i class="<?php echo esc_html($settings['post_meta_icon_view']['value']);?>"></i> <?php echo  $video_views;?> views</div>
-                                    </div>
+<!--                                    <div class="post__cat">-->
+<!---->
+<!--                                        <span class="tag-item">-->
+<!--                                       <a href="--><?php //print esc_url(get_category_link($categories[0]->term_id)); ?><!--">-->
+<!--                                            --><?php //echo esc_html($categories[0]->name);?>
+<!--                                       </a>-->
+<!--                                   </span>-->
+<!--                                    </div>-->
+                                    <h3 class="post__title"><a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo get_the_title(); ?></a></h3>
                                 </div>
                             </div>
-                        </a>
+                        </div>
 
 
 
-                    <?php endforeach;
+                    <?php endwhile;
+                        wp_reset_query();
                     endif; ?>
                 </div>
             </div>

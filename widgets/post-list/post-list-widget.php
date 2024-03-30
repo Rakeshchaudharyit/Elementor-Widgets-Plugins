@@ -112,7 +112,6 @@ class Post_List extends BDevs_El_Widget
                 'type' => Controls_Manager::SELECT,
                 'default' => 'recent',
                 'options' => [
-                    'all' => __('All Post', 'bdevselement'),
                     'recent' => __('Recent Post', 'bdevselement'),
                     'selected' => __('Selected Post', 'bdevselement'),
                 ],
@@ -128,7 +127,7 @@ class Post_List extends BDevs_El_Widget
                 'default' => 6,
                 'dynamic' => ['active' => true],
                 'condition' => [
-                    'show_post_by' => ['recent', 'all']
+                    'show_post_by' => ['recent']
                 ]
             ]
         );
@@ -199,13 +198,12 @@ class Post_List extends BDevs_El_Widget
             [
                 'label' => __( 'Column', 'bdevselement' ),
                 'type' => Controls_Manager::SELECT,
-                'default' => 'five_column',
+                'default' => 'four_column',
                 'options' => [
                     'one_column' => __('1 Column', 'bdevselement'),
                     'two_column' => __('2 Column', 'bdevselement'),
                     'three_column' => __('3 Column', 'bdevselement'),
                     'four_column' => __('4 Column', 'bdevselement'),
-                    'five_column' => __('5 Column', 'bdevselement'),
                     'six_column' => __('6 Column', 'bdevselement'),
                 ],
             ]
@@ -336,7 +334,7 @@ class Post_List extends BDevs_El_Widget
                 'label' => __( 'Color', 'bdevselement' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .post__content .post__title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .post__content .post__title a' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -355,7 +353,7 @@ class Post_List extends BDevs_El_Widget
                 'label' => __( 'Color', 'bdevselement' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .post__content .post__title:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .post__content .post__title a:hover' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -403,145 +401,17 @@ class Post_List extends BDevs_El_Widget
         );
 
         $this->add_responsive_control(
-            'post_meta_list',
+            'excerpt_margin_top_list',
             [
-                'label' => __( 'Meta', 'bdevselement' ),
-                'type' => Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'post_meta_bg',
-                'label' => esc_html__( 'Background', 'plugin-name' ),
-                'types' => [ 'classic', 'gradient', 'video' ],
-                'selector' => '{{WRAPPER}} .post__content',
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'post_meta_typography',
-                'label' => __( 'Typography', 'bdevselement' ),
-                'scheme' => Typography::TYPOGRAPHY_3,
-                'selector' => '{{WRAPPER}} .post-views, {{WRAPPER}} .post-date',
-            ]
-        );
-        $this->add_control(
-            'post_meta_color',
-            [
-                'label' => __( 'Color', 'bdevselement' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .post-views, {{WRAPPER}} .post-date' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-        $this->add_responsive_control(
-            'post_content_radius',
-            [
-                'label' => __( 'Radius', 'bdevselement' ),
+                'label' => __( 'Margin', 'bdevselement' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .post_item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .post__content p' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
-        $this->add_control(
-            'meta_icon_options',
-            [
-                'label' => esc_html__( 'Icon Options', 'plugin-name' ),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-        $this->add_control(
-            'post_meta_icon_view',
-            [
-                'label' => __( 'View Icon', 'bdevselement' ),
-                'type' => Controls_Manager::ICONS,
-                'default' => [
-                    'value' => 'fas fa-star',
-                    'library' => 'solid',
-                ],
-            ]
-        );
-        $this->add_control(
-            'post_meta_icon_time',
-            [
-                'label' => __( 'Time Icon', 'bdevselement' ),
-                'type' => Controls_Manager::ICONS,
-                'default' => [
-                    'value' => 'fa-thin fa-clock',
-                    'library' => 'solid',
-                ],
-            ]
-        );
-        $this->add_control(
-            'post_meta_space',
-            [
-                'label' => esc_html__( 'Space Between', 'plugin-name' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 10,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .post-views' => 'margin-left: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-        $this->add_control(
-            'post_meta_icon_color',
-            [
-                'label' => __( 'Icon Color', 'bdevselement' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .post-meta i, {{WRAPPER}} .post-meta i:before' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-        $this->add_control(
-            'post_meta_icon_margin',
-            [
-                'label' => esc_html__( 'Text Indent', 'plugin-name' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 10,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .post-views i, {{WRAPPER}} .post-date i' => 'margin-right: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
+
         $this->end_controls_section();
     }
 
@@ -554,7 +424,7 @@ class Post_List extends BDevs_El_Widget
             'post_status' => 'publish',
             'post_type' => $settings['post_type'],
         ];
-        if ('recent' === $settings['show_post_by'] || 'all' === $settings['show_post_by']) {
+        if ('recent' === $settings['show_post_by']) {
             $args['posts_per_page'] = $settings['posts_per_page'];
         }
 
@@ -584,36 +454,37 @@ class Post_List extends BDevs_El_Widget
 
         $this->add_render_attribute('title', 'class', 'post__title');?>
 
-        <div class="video-list-grid video-list-slider row-column-<?php echo esc_attr($settings['grid_column'] ? $settings['grid_column'] : 6); ?>">
+        <div class="video-list-slider video-list row-clumn-<?php echo esc_attr($settings['grid_column'] ? $settings['grid_column'] : 6); ?>">
             <?php foreach ($posts as $inx => $post):
                 $categories = get_the_category($post->ID);
                 $video_views = get_post_meta( $post->ID, 'popular_videos', true );
+
+
                 $video_thumb = get_the_post_thumbnail_url($post->ID, 'full');
 
                 ?>
-                <a href="<?php the_permalink($post->ID);?>" class="item_wrap">
+               
                     <div class="post_item">
                         <div class="item-img">
-                          <img src="<?php echo esc_url($video_thumb);?>" alt="<?php the_title();?>">
+                            <a href="<?php the_permalink();?>"><img src="<?php echo esc_url($video_thumb);?>" alt="<?php the_title();?>"></a>
                         </div>
                         <div class="post__content">
                             <?php $title = $post->post_title;
                             if ('selected' === $settings['show_post_by'] && array_key_exists($post->ID, $customize_title)) {
                                 $title = $customize_title[$post->ID];
                             }
-                            printf('<%1$s %2$s>%3$s</%1$s>',
+                            printf('<%1$s %2$s><a href="%4$s">%3$s</a></%1$s>',
                                 tag_escape($settings['title_tag']),
                                 $this->get_render_attribute_string('title'),
-                                esc_html($title)
+                                esc_html($title),
+                                esc_url(get_the_permalink($post->ID))
                             ); ?>
-                            
                             <div class="post-meta">
-                                <div class="post-date"><i class="<?php echo esc_html($settings['post_meta_icon_time']['value']);?>"></i> Added <?php echo human_time_diff( strtotime( $post->post_date ), current_time( 'timestamp' ) ).' '.__( 'ago' );?></div>
-                                <div class="post-views"><i class="<?php echo esc_html($settings['post_meta_icon_view']['value']);?>"></i> <?php echo  $video_views;?> views</div>
+                                <div class="post-views"><img src="<?php echo BDEVSEL_ASSETS;?>img/view.svg" alt="view"> <?php echo  $video_views;?> views</div>
+                                <div class="post-date"><img src="<?php echo BDEVSEL_ASSETS;?>img/clock.svg" alt="date"> Added <?php echo get_the_date(); ?></div>
                             </div>
                         </div>
                     </div>
-                </a>
             <?php endforeach; ?>
 
         </div>

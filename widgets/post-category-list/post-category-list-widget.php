@@ -13,7 +13,6 @@ use \Elementor\Group_Control_Background;
 use BdevsElementor\Controls\Select2;
 use Elementor\Icons_Manager;
 
-
 defined( 'ABSPATH' ) || die();
 
 class Post_Category_list extends BDevs_El_Widget {
@@ -151,232 +150,13 @@ class Post_Category_list extends BDevs_El_Widget {
         $this->add_control(
             'title_color',
             [
-                'label' => esc_html__( 'Title Color', 'bdevselement' ),
+                'label' => esc_html__( 'Title Color', 'plugin-name' ),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .video-cat-title' => 'color: {{VALUE}}',
                 ],
             ]
         );
-
-        $this->end_controls_section();
-        $this->start_controls_section(
-            '_section_post_cat_img',
-            [
-                'label' => __( 'Category Icon', 'bdevselement' ),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-        $this->add_control(
-            'show_cat_image',
-            [
-                'label' => esc_html__( 'Show Icon', 'bdevselement' ),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__( 'Show', 'your-plugin' ),
-                'label_off' => esc_html__( 'Hide', 'your-plugin' ),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-        $this->add_control(
-            'cat_img_gap',
-            [
-                'label' => esc_html__( 'Text Indent ', 'bdevselement' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 10,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .video-cat-list li span.cat-img' => 'margin-right: {{SIZE}}{{UNIT}};'
-                ],
-                'condition' => ['show_cat_image' => 'yes'],
-            ]
-        );
-        $this->add_control(
-            'cat_img_width',
-            [
-                'label' => esc_html__( 'Icon Width', 'bdevselement' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 32,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .video-cat-list li span.cat-img' => 'flex: 0 0 {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => ['show_cat_image' => 'yes'],
-
-            ]
-        );
-
-        $this->add_control(
-            'cat_img_height',
-            [
-                'label' => esc_html__( 'Icon Height', 'bdevselement' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 32,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .video-cat-list li span.cat-img' => 'height: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => ['show_cat_image' => 'yes'],
-
-            ]
-        );
-        $this->add_control(
-            'cat_img_size',
-            [
-                'label' => esc_html__( 'Icon Size', 'bdevselement' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 15,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .video-cat-list li span.cat-img img' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => ['show_cat_image' => 'yes'],
-
-            ]
-        );
-        $this->add_control(
-            'cat_img_line_hight',
-            [
-                'label' => esc_html__( 'Icon Space', 'bdevselement' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 28,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .video-cat-list li span.cat-img ' => 'line-height: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => ['show_cat_image' => 'yes'],
-
-            ]
-        );
-        $this->add_control(
-            'cat_img_radius',
-            [
-                'label' => esc_html__( 'Border Radius', 'plugin-name' ),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%', 'em' ],
-                'selectors' => [
-                    '{{WRAPPER}} .video-cat-list li span.cat-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-
-        $this->start_controls_tabs(
-            'style_tabs'
-        );
-
-        $this->start_controls_tab(
-            'style_normal_tab',
-            [
-                'label' => esc_html__( 'Normal', 'plugin-name' ),
-            ]
-        );
-        $this->add_control(
-            'cat_img_bg_normal',
-            [
-                'label' => esc_html__( 'Background', 'bdevselement' ),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#EFEFEF',
-                'selectors' => [
-                    '{{WRAPPER}} .video-cat-list li span.cat-img' => 'background-color: {{VALUE}}',
-                ],
-                'condition' => ['show_cat_image' => 'yes'],
-            ]
-        );
-        $this->end_controls_tab();
-
-        $this->start_controls_tab(
-            'style_hover_tab',
-            [
-                'label' => esc_html__( 'Hover', 'plugin-name' ),
-            ]
-        );
-        $this->add_control(
-            'cat_img_bg_hover',
-            [
-                'label' => esc_html__( 'Background', 'bdevselement' ),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#EFEFEF',
-                'selectors' => [
-                    '{{WRAPPER}} .video-cat-list li:hover span.cat-img' => 'background-color: {{VALUE}}',
-                ],
-                'condition' => ['show_cat_image' => 'yes'],
-            ]
-        );
-
-        $this->end_controls_tab();
-
-        $this->end_controls_tabs();
 
         $this->end_controls_section();
 
@@ -388,14 +168,30 @@ class Post_Category_list extends BDevs_El_Widget {
             ]
         );
         $this->add_control(
-            'cat_show_count',
+            'cat_gap',
             [
-                'label' => esc_html__( 'Show Count', 'bdevselement' ),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__( 'Show', 'your-plugin' ),
-                'label_off' => esc_html__( 'Hide', 'your-plugin' ),
-                'return_value' => 'yes',
-                'default' => 'yes',
+                'label' => esc_html__( 'Space Between', 'bdevselement' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 5,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .video-cat-list li' => 'padding-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .video-cat-list li' => 'padding-bottom: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
         $this->add_group_control(
@@ -427,7 +223,17 @@ class Post_Category_list extends BDevs_El_Widget {
                 ],
             ]
         );
-
+        $this->add_responsive_control(
+            'cat_wrap_padding',
+            [
+                'label' => __( 'Padding', 'bdevselement' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .video-cat-wrap .video-cat-list' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
 		$this->start_controls_tabs( 'cat_tabs' );
 		$this->start_controls_tab(
@@ -447,26 +253,6 @@ class Post_Category_list extends BDevs_El_Widget {
 				],
 			]
 		);
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'cat_item_background',
-                'label' => esc_html__( 'Background', 'bdevselement' ),
-                'types' => [ 'classic', 'gradient' ],
-                'selector' => '{{WRAPPER}} .video-cat-list li',
-            ]
-        );
-        $this->add_responsive_control(
-            'cat_wrap_padding',
-            [
-                'label' => __( 'Padding', 'bdevselement' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .video-cat-wrap .video-cat-list li' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
@@ -486,26 +272,6 @@ class Post_Category_list extends BDevs_El_Widget {
 				],
 			]
 		);
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'cat_item_hover_background',
-                'label' => esc_html__( 'Background', 'bdevselement' ),
-                'types' => [ 'classic', 'gradient' ],
-                'selector' => '{{WRAPPER}} .video-cat-list li:hover',
-            ]
-        );
-        $this->add_responsive_control(
-            'cat_hover_wrap_padding',
-            [
-                'label' => __( 'Padding', 'bdevselement' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .video-cat-wrap .video-cat-list li:hover' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
         $this->end_controls_tab();
         $this->start_controls_tab(
             'cat_active_tab',
@@ -520,28 +286,8 @@ class Post_Category_list extends BDevs_El_Widget {
                 'label' => __( 'Color', 'bdevselement' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .video-cat-list li.current' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .video-cat-list li.current a' => 'color: {{VALUE}}',
                 ],
-            ]
-        );
-        $this->add_responsive_control(
-            'cat_active_wrap_padding',
-            [
-                'label' => __( 'Padding', 'bdevselement' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .video-cat-wrap .video-cat-list li.current' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'cat_item_active_background',
-                'label' => esc_html__( 'Background', 'bdevselement' ),
-                'types' => [ 'classic', 'gradient' ],
-                'selector' => '{{WRAPPER}} .video-cat-list li.current',
             ]
         );
 		$this->end_controls_tab();
@@ -570,47 +316,8 @@ class Post_Category_list extends BDevs_El_Widget {
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'box_shadow',
-                'label' => esc_html__( 'Box Shadow', 'bdevselement' ),
+                'label' => esc_html__( 'Box Shadow', 'plugin-name' ),
                 'selector' => '{{WRAPPER}} .video-cat-wrap',
-            ]
-        );
-        $this->add_control(
-            'caret_options',
-            [
-                'label' => esc_html__( 'Caret Options', 'plugin-name' ),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-        $this->add_control(
-            'cat_show_caret',
-            [
-                'label' => esc_html__( 'Show Caret', 'bdevselement' ),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__( 'Show', 'your-plugin' ),
-                'label_off' => esc_html__( 'Hide', 'your-plugin' ),
-                'return_value' => 'yes',
-                'default' => 'no',
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'caret__background',
-                'label' => esc_html__( 'Background', 'bdevselement' ),
-                'types' => [ 'classic', 'gradient' ],
-                'selector' => '{{WRAPPER}} ul.video-cat-list li:hover .cat-caret, {{WRAPPER}} ul.video-cat-list li.current .cat-caret',
-            ]
-        );
-        $this->add_responsive_control(
-            'caret_border_radius',
-            [
-                'label' => __( 'Border Radius', 'bdevselement' ),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} ul.video-cat-list li.current .cat-caret, {{WRAPPER}} ul.video-cat-list li:hover .cat-caret' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
             ]
         );
 		$this->end_controls_section();
@@ -652,22 +359,12 @@ class Post_Category_list extends BDevs_El_Widget {
                         }
                         ?>
                         <li class="<?php echo implode(' ',$classes);?>">
-
                             <a href="<?php echo $url;?>">
-                                <?php if ('yes' == $settings['show_cat_image']):?>
-                                    <span class="cat-img"><img src="<?php echo z_taxonomy_image_url($term->term_id); ?>" /></span>
-                                <?php endif;?>
-                                <span class="cat-info">
-                                    <span class="cat-name"><?php echo $term->name;?></span>
-                                <?php if($term->count && $settings['cat_show_count']): ?>
+                                <span class="cat-name"><?php echo $term->name;?></span>
+                                <?php if($term->count): ?>
                                     <span class="tag_count">(<?php echo $term->count;?>)</span>
                                 <?php endif;?>
-                                </span>
-
                             </a>
-                            <?php if ( 'yes' == $settings['cat_show_caret']):?>
-                                <div class="cat-caret"></div>
-                            <?php endif;?>
                         </li>
                     <?php }
                     echo '</ul>';

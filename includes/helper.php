@@ -10,10 +10,7 @@ class Helper {
 
         return [
 
-            'navigation-menus' => [
-                'title' => __( 'Navigation Menu', 'bdevselement' ),
-                'icon' => 'eicon-menu-toggle',
-            ],
+
             'post-list' => [
                 'title' => __( 'Post List', 'bdevselement' ),
                 'icon' => 'fa fa-post-list',
@@ -43,23 +40,14 @@ class Helper {
                  'title' => __( 'Post Video', 'bdevselement' ),
                  'icon' => 'fa fa-post-tab',
              ],
+             'post-hero-section' => [
+                'title' => __( 'Post Hero Section', 'bdevselement' ),
+                'icon' => 'fa fa-post-tab',
+            ],
 			 'post-category-list' => [
                  'title' => __( 'Category List', 'bdevselement' ),
                  'icon' => 'eicon-product-categories',
              ],
-            'post-meta-list' => [
-                'title' => __( 'Meta List', 'bdevselement' ),
-                'icon' => 'eicon-product-meta',
-            ],
-            'team-box' => [
-                'title' => __( 'Team Box', 'bdevselement' ),
-                'icon' => 'eicon-product-meta',
-            ],
-            'testimonial' => [
-                'title' => __( 'Testimonial', 'bdevselement' ),
-                'icon' => 'eicon-product-meta',
-            ],
-
 
         ];
     }

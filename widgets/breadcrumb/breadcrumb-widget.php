@@ -97,7 +97,7 @@ class Breadcrumb extends BDevs_El_Widget
         $this->start_controls_section(
             '_section_post_tab_content_list',
             [
-                'label' => __( 'Breadcrumb Style', 'bdevselement' ),
+                'label' => __( 'Post Style', 'bdevselement' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -134,37 +134,12 @@ class Breadcrumb extends BDevs_El_Widget
             ]
         );
         $this->add_control(
-            'bredcrumb_space',
-            [
-                'label' => esc_html__( 'Space Between', 'bdevselement' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', '%' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 5,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 10,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .man-breadcrumb li + li' => 'margin-left: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-        $this->add_control(
             'breadcrumb_color',
             [
                 'label' => __( 'Color', 'bdevselement' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
+                    '{{WRAPPER}} .man-breadcrumb li' => 'color: {{VALUE}}',
                     '{{WRAPPER}} .man-breadcrumb li a' => 'color: {{VALUE}}',
                 ],
             ]
@@ -176,16 +151,6 @@ class Breadcrumb extends BDevs_El_Widget
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .man-breadcrumb li a:hover' => 'color: {{VALUE}}',
-                ],
-            ]
-        );
-        $this->add_control(
-            'breadcrumb_current_color',
-            [
-                'label' => __( 'Current Color', 'bdevselement' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .man-breadcrumb li.item-current.item' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -218,7 +183,7 @@ class Breadcrumb extends BDevs_El_Widget
         $custom_taxonomy  = 'video_category'; // If you have custom taxonomy place it here
 
         $defaults = array(
-            'seperator'   =>  '&#124;',
+            'seperator'   =>  '&#187;',
             'id'          =>  'man-breadcrumb',
             'classes'     =>  'man-breadcrumb',
             'home_title'  =>  esc_html__( 'Home', '' )
@@ -410,13 +375,11 @@ class Breadcrumb extends BDevs_El_Widget
                 echo $parents;
 
                 // Current page
-                echo '<li class="item"><a href="'. home_url() .'">Home</a></li>' . $sep;
                 echo '<li class="item-current item">'. get_the_title() .'</li>';
 
             } else {
 
                 // Just display current page if not parents
-                echo '<li class="item"><a href="'. home_url() .'">Home</a></li>' . $sep;
                 echo '<li class="item-current item">'. get_the_title() .'</li>';
 
             }

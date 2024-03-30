@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Zambezi Sports Element
- * Description: Zambezi Sports Element contains useful widgets for Elementor Page Builder.
- * Plugin URI:  https://zambezi-sports.com/
+ * Plugin Name: TheVideoSite Element
+ * Description: VideoSite Element contains useful widgets for Elementor Page Builder.
+ * Plugin URI:  https://thevideo.site/
  * Version:     1.1.2
  * Author:      A. M. Shehab
  * Author URI:  http://softfounder.com
@@ -215,7 +215,7 @@ final class BdevsElement {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
 			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'bdevs-element' ),
-			'<strong>' . esc_html__( 'Zambezi Sports Element', 'bdevs-element' ) . '</strong>',
+			'<strong>' . esc_html__( 'TheVideoSite Element', 'bdevs-element' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'bdevs-element' ) . '</strong>'
 		);
 
@@ -239,7 +239,7 @@ final class BdevsElement {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'bdevs-element' ),
-			'<strong>' . esc_html__( 'Zambezi Sports Element', 'bdevs-element' ) . '</strong>',
+			'<strong>' . esc_html__( 'TheVideoSite Element', 'bdevs-element' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'bdevs-element' ) . '</strong>',
 			 self::MINIMUM_ELEMENTOR_VERSION
 		);
@@ -264,7 +264,7 @@ final class BdevsElement {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'bdevs-element' ),
-			'<strong>' . esc_html__( 'Zambezi Sports Element', 'bdevs-element' ) . '</strong>',
+			'<strong>' . esc_html__( 'TheVideoSite Element', 'bdevs-element' ) . '</strong>',
 			'<strong>' . esc_html__( 'PHP', 'bdevs-element' ) . '</strong>',
 			 self::MINIMUM_PHP_VERSION
 		);
@@ -279,7 +279,7 @@ final class BdevsElement {
 	public function add_elementor_category() {
     	self::$elementor_instance->elements_manager->add_category('bdevs-element',
 	      	array(
-					'title' => __( 'Zambezi Sports Element', 'bdevs-element' ),
+					'title' => __( 'TheVideoSite Element', 'bdevs-element' ),
 					'icon'  => 'fa fa-plug',
 	      	) 
 	    );
